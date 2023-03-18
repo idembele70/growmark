@@ -10,12 +10,10 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <BrowserRouter basename="/growmark">
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  </BrowserRouter>
 );

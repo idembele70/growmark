@@ -15,10 +15,12 @@ export const defaultTheme: DefaultTheme = {
     primary: {
       main: "#4761FF",
       darker: "#3c52d9",
-      light: ""
+      light: "#F1F3FA"
     },
     secondary: {
-      main: "#1C2035"
+      darker: "#1C2035",
+      main: "#1E2125",
+      light: "#E9ECEF"
     }
   }
 }
