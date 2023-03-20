@@ -5,12 +5,15 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import {
+  faBars,
   faChevronDown,
   faEnvelope,
   faLocationDot,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import {
+  Bars,
+  BarsContainer,
   Bottom,
   BottomWrapper,
   Container,
@@ -21,12 +24,15 @@ import {
   LogoContainer,
   Nav,
   NavDropDown,
+  NavDropDownContainer,
   NavDropDownIcon,
   NavDropDownItem,
   NavDropDownItemContainer,
   NavItem,
+  NavItemContainer,
   NavItemWrapper,
   QuoteBtn,
+  SMLogo,
   SocialContainer,
   SocialIcon,
   SocialIconContainer,
@@ -56,7 +62,7 @@ const Header = () => {
     },
   ];
   const socialIcons: IconDefinition[] = [faFacebookF, faTwitter, faLinkedinIn];
-  //
+  // Dropdown set to active effect
   const { pathname } = useLocation();
   const [dropDownActive, setDropDownActive] = useState(false);
   useEffect(() => {
@@ -70,6 +76,16 @@ const Header = () => {
     if (dropDownPathname.includes(pathname)) setDropDownActive(true);
     else setDropDownActive(false);
   }, [pathname]);
+  // expand navbar handler
+  const [expanded, setExpanded] = useState(false);
+  const handleExpand = () => {
+    setExpanded(!expanded);
+  };
+  // expand dropDown on MDDown devices
+  const [expandDropDown, setExpandDropDown] = useState(false);
+  const handleExpandDropDown = () => {
+    setExpandDropDown(!expandDropDown);
+  };
   return (
     <Container>
       <Top>
@@ -97,26 +113,39 @@ const Header = () => {
       <Bottom>
         <BottomWrapper>
           <Nav>
-            <NavItemWrapper>
-              <NavItem to="/">Home</NavItem>
-              <NavItem to="/about">About</NavItem>
-              <NavItem to="/service">Services</NavItem>
-              <NavItem to="/project">Projects</NavItem>
-              <NavDropDown isActive={dropDownActive} href="#">
-                Pages
-                <NavDropDownIcon icon={faChevronDown} />
-                <NavDropDownItemContainer>
-                  <NavDropDownItem to="/feature">Features</NavDropDownItem>
-                  <NavDropDownItem to="/team">Our Team</NavDropDownItem>
-                  <NavDropDownItem to="/testimonial">
-                    Testimonial
-                  </NavDropDownItem>
-                  <NavDropDownItem to="/quotation">Quotation</NavDropDownItem>
-                  <NavDropDownItem to="/notFound">404 Page</NavDropDownItem>
-                </NavDropDownItemContainer>
-              </NavDropDown>
-              <NavItem to="/contact">Contact</NavItem>
-            </NavItemWrapper>
+            <LogoContainer to="/">
+              <SMLogo>GrowMark</SMLogo>
+            </LogoContainer>
+            <BarsContainer onClick={handleExpand}>
+              <Bars icon={faBars} />
+            </BarsContainer>
+            <NavItemContainer isExpanded={expanded}>
+              <NavItemWrapper>
+                <NavItem to="/">Home</NavItem>
+                <NavItem to="/about">About</NavItem>
+                <NavItem to="/service">Services</NavItem>
+                <NavItem to="/project">Projects</NavItem>
+                <NavDropDownContainer
+                  onClick={handleExpandDropDown}
+                  isExpanded={expandDropDown}
+                >
+                  <NavDropDown isActive={dropDownActive} href="#">
+                    Pages
+                    <NavDropDownIcon icon={faChevronDown} />
+                  </NavDropDown>
+                  <NavDropDownItemContainer>
+                    <NavDropDownItem to="/feature">Features</NavDropDownItem>
+                    <NavDropDownItem to="/team">Our Team</NavDropDownItem>
+                    <NavDropDownItem to="/testimonial">
+                      Testimonial
+                    </NavDropDownItem>
+                    <NavDropDownItem to="/quotation">Quotation</NavDropDownItem>
+                    <NavDropDownItem to="/notFound">404 Page</NavDropDownItem>
+                  </NavDropDownItemContainer>
+                </NavDropDownContainer>
+                <NavItem to="/contact">Contact</NavItem>
+              </NavItemWrapper>
+            </NavItemContainer>
             <QuoteBtn to="/">Get A Quote</QuoteBtn>
           </Nav>
         </BottomWrapper>
