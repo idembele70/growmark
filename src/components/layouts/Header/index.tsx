@@ -80,6 +80,7 @@ const Header = () => {
   const [expanded, setExpanded] = useState(false);
   const handleExpand = () => {
     setExpanded(!expanded);
+    if (expandDropDown) setExpandDropDown(false);
   };
   // expand dropDown on MDDown devices
   const [expandDropDown, setExpandDropDown] = useState(false);

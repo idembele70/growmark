@@ -56,7 +56,6 @@ p {
   font-family: "Montserrat", "sans-serif";
   font-weight:400;
   line-height:1.5;
-  font-size:1rem;
 }
 button {
   font-size:1rem;

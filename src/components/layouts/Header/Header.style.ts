@@ -5,13 +5,13 @@ import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { LGDown, MDDown, MDUp, SMDown, XLDown, XSDown } from '../../../styles/responsive';
 const Container = styled.div`
-  
+  z-index:10;
 `;
 const DefaultWrapper = styled.div`
   max-width:1320px;
   width:100%;
   margin: 0 auto;
-  padding: 16px 12px;
+  padding: 0 12px;
   ${XLDown({
   maxWidth: 1140
 })}
@@ -39,6 +39,7 @@ const TopWrapper = styled(DefaultWrapper)`
   display:flex;
   align-items:center;
   justify-content:space-between;
+  padding: 16px 12px;
 `;
 const LogoContainer = styled(Link)`
   
@@ -175,18 +176,16 @@ const NavDropDownContainer = styled.div<NavDropDownContainerProps>`
   position:relative;
   display:flex;
   &:hover {
-    ${({ theme }) =>
-    MDUp({
-      ["& svg, & > a"]: {
-        color: theme.palette.primary.main
-      },
-      ["& > div"]: {
-        top: "100%",
-        opacity: 1,
-        visibility: "visible",
-      }
-
-    })
+    & svg, & > a {
+      color: ${({ theme }) => theme.palette.primary.main};
+    }
+    ${MDUp({
+  ["& > div"]: {
+    top: "100%",
+    opacity: 1,
+    visibility: "visible",
+  }
+})
   }
   }
   ${({ isExpanded }) => MDDown({
@@ -218,6 +217,7 @@ const NavDropDownIcon = styled(FontAwesomeIcon)`
   transition: all 150ms ease-in-out;
 `;
 const NavDropDownItemContainer = styled.div`
+  z-index:10;
   position:absolute;
   top:150%;
   opacity:0;
