@@ -2,11 +2,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { XSDown } from '../../../styles/responsive';
-const Section = styled.section`
-  padding: 0 12px;
-  width:100%;
-`;
+
 const Container = styled.section`
+  margin-bottom:48px;
   position: relative;
   & .slick-active {
     z-index:1;
@@ -58,7 +56,6 @@ const BtnIcon = styled(FontAwesomeIcon)`
   color:${({ theme }) => theme.palette.common.white};
 `;
 export {
-  Section,
   Container,
   PrevBtn,
   NextBtn,
