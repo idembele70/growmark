@@ -22,6 +22,9 @@ export const defaultTheme: DefaultTheme = {
       main: "#1E2125",
       light: "#E9ECEF"
     }
+  },
+  zIndex: {
+    modal: 1060
   }
 }
 

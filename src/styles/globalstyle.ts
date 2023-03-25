@@ -25,8 +25,8 @@ h2 {
 }
 h3 {
   font-family:"Roboto", "sans-serif";
-  font-weight:600;
-  line-height:1.2;
+  font-weight:500;
+  line-height:1.5;
 }
 h4 {
   font-family:"Roboto", "sans-serif";

@@ -56,7 +56,7 @@ const Features = () => {
               <ItemContainer>
                 <IconContainer>
                   <Icon
-                    src={`${process.env.PUBLIC_URL}/assets/icon/feature/icon-${img}.png`}
+                    src={`${process.env.PUBLIC_URL}/assets/icon/icon-${img}.png`}
                     alt={title}
                   />
                 </IconContainer>

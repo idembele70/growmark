@@ -21,5 +21,8 @@ declare module "styled-components" {
       primary: IPalette;
       secondary: IPalette;
     };
+    zIndex: {
+      modal: number;
+    }
   }
 }
