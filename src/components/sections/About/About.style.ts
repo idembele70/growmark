@@ -2,18 +2,22 @@
 import styled, { keyframes } from 'styled-components'
 import { DefaultWrapper } from '../../layouts/Header/Header.style';
 import { Link } from 'react-router-dom';
-import { LGDown, MDDown, MDUp, XLDown, XSDown } from '../../../styles/responsive';
+import { LGDown, MDDown, MDUp, XLDown, XLUp, XSDown } from '../../../styles/responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.section`
   margin:48px auto;
+  padding: 0 12px;
   background:linear-gradient(
     rgba(0,0,0,0.1),
     rgba(0,0,0,0.1)),
     url(${process.env.PUBLIC_URL}/assets/about/about.jpg)
   ;
   background-size:cover;
-  max-width: 1320px;
+  width: "100%";
+  ${XLUp({
+  maxWidth: 1320
+})}
 ${XLDown({
   marginLeft: 0,
   marginRight: 0
@@ -22,7 +26,6 @@ ${XLDown({
 const ParentWrapper = styled(DefaultWrapper)`
 `;
 const Wrapper = styled.div`
-  padding: 0 12px;
   display:flex;
   ${MDDown({
   flexDirection: "column"

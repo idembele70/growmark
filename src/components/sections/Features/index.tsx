@@ -1,12 +1,11 @@
 import React, { useMemo } from "react";
 import {
-  Container,
+  ContainerXXL as Container,
   Description,
   Icon,
   IconContainer,
   ItemContainer,
   ItemWrapper,
-  ParentWrapper,
   Title,
   Wrapper,
 } from "./feature.style";
@@ -49,24 +48,22 @@ const Features = () => {
   );
   return (
     <Container>
-      <ParentWrapper>
-        <Wrapper>
-          <ItemWrapper>
-            {featureItems.map(({ img, title, description }, idx) => (
-              <ItemContainer>
-                <IconContainer>
-                  <Icon
-                    src={`${process.env.PUBLIC_URL}/assets/icon/icon-${img}.png`}
-                    alt={title}
-                  />
-                </IconContainer>
-                <Title>{title}</Title>
-                <Description>{description}</Description>
-              </ItemContainer>
-            ))}
-          </ItemWrapper>
-        </Wrapper>
-      </ParentWrapper>
+      <Wrapper>
+        <ItemWrapper>
+          {featureItems.map(({ img, title, description }, idx) => (
+            <ItemContainer>
+              <IconContainer>
+                <Icon
+                  src={`${process.env.PUBLIC_URL}/assets/icon/icon-${img}.png`}
+                  alt={title}
+                />
+              </IconContainer>
+              <Title>{title}</Title>
+              <Description>{description}</Description>
+            </ItemContainer>
+          ))}
+        </ItemWrapper>
+      </Wrapper>
     </Container>
   );
 };

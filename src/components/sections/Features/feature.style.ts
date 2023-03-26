@@ -1,15 +1,19 @@
 // Feature style
 import styled from 'styled-components';
 import { DefaultWrapper } from '../../layouts/Header/Header.style';
-import { MDDown, SMDown } from '../../../styles/responsive';
+import { LGDown, MDDown, SMDown, XLDown, XLUp } from '../../../styles/responsive';
 
-const Container = styled.section`
+const ContainerXXL = styled.section`
 padding:48px 12px;
+margin: 0 auto;
+width: 100%;
+${XLUp({
+  maxWidth: 1320
+})
+  }
 `;
 
-const ParentWrapper = styled(DefaultWrapper)`
-`;
-const Wrapper = styled.div`
+const Wrapper = styled(DefaultWrapper)`
 background-color:${({ theme }) => theme.palette.common.white};
 box-shadow: 0 0 45px rgba(0,0,0,.08);
 `;
@@ -72,8 +76,7 @@ const Description = styled.p`
   
 `;
 export {
-  Container,
-  ParentWrapper,
+  ContainerXXL,
   Wrapper,
   ItemWrapper,
   ItemContainer,

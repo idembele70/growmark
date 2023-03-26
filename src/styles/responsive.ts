@@ -1,6 +1,12 @@
 import { CSSObject, css } from "styled-components";
 
 // XLarge devices breakpoint
+const XLUp = (props: CSSObject) =>
+  css`
+@media only screen and (min-width:1400px) {
+  ${props}
+}
+`
 const XLDown = (props: CSSObject) =>
   css`
 @media only screen and (max-width:1399px) {
@@ -40,6 +46,7 @@ const XSDown = (props: CSSObject) =>
 }`
 
 export {
+  XLUp,
   XLDown,
   LGDown,
   MDDown,
