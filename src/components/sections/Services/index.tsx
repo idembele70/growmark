@@ -13,7 +13,12 @@ import {
   Title,
   Wrapper,
   Description,
+  BtnIcon,
+  BtnLink,
+  BtnContainer,
+  ItemContainerWrapper,
 } from "./Service.style";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const Services = () => {
   // Services items
@@ -71,16 +76,24 @@ const Services = () => {
         <ItemWrapper>
           {serviceItems.map(({ img, title, description }, idx) => (
             <ItemContainer>
-              <Item>
-                <IconContainer>
-                  <Icon
-                    src={`${process.env.PUBLIC_URL}/assets/icon/icon-${img}.png`}
-                    alt={title}
-                  />
-                </IconContainer>
-                <IconTitle>{title}</IconTitle>
-                <Description>{description}</Description>
-              </Item>
+              <ItemContainerWrapper>
+                <Item className="item">
+                  <IconContainer>
+                    <Icon
+                      src={`${process.env.PUBLIC_URL}/assets/icon/icon-${img}.png`}
+                      alt={title}
+                    />
+                  </IconContainer>
+                  <IconTitle>{title}</IconTitle>
+                  <Description>{description}</Description>
+                </Item>
+                <BtnContainer className="btnContainer">
+                  <BtnLink to="">
+                    Read More
+                    <BtnIcon icon={faChevronRight} />
+                  </BtnLink>
+                </BtnContainer>
+              </ItemContainerWrapper>
             </ItemContainer>
           ))}
         </ItemWrapper>
