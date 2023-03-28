@@ -21,18 +21,24 @@ const LGDown = (props: CSSObject) =>
 }
 `
 // Medium devices breakpoint
+const MDUp = (props: CSSObject) =>
+  css`
+@media only screen and (min-width:992px) {
+  ${props}
+}`
+
 const MDDown = (props: CSSObject) =>
   css`
 @media only screen and (max-width:991px) {
   ${props}
 }
 `
-const MDUp = (props: CSSObject) =>
+// Small devices breakpoint
+const SMUp = (props: CSSObject) =>
   css`
-@media only screen and (min-width:992px) {
+@media only screen and (min-width:768px) {
   ${props}
 }`
-// Small devices breakpoint
 const SMDown = (props: CSSObject) =>
   css`
 @media only screen and (max-width:767px) {
@@ -49,8 +55,9 @@ export {
   XLUp,
   XLDown,
   LGDown,
-  MDDown,
   MDUp,
+  MDDown,
+  SMUp,
   SMDown,
   XSDown,
 }
