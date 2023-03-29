@@ -72,6 +72,13 @@ ${MDUp({
 // spacing beetween slides
 & .slick-slide{
   padding-right:25px;
+  // hack to see the box-shadow of slide on bottom
+  margin-bottom:24px; 
+}
+& .slick-list {
+  // hack to see the box-shadow on bottom cause overflow-y
+  // cannot be override only
+  margin-bottom:-24px; 
 }
 
 `;

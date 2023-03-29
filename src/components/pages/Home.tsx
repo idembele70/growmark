@@ -5,6 +5,7 @@ import About from "../sections/About";
 import Services from "../sections/Services";
 import Project from "../sections/Project";
 import Quote from "../sections/Quote";
+import Team from "../sections/Team";
 const Home = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const Home = () => {
       <Services />
       <Project />
       <Quote />
+      <Team />
     </>
   );
 };
