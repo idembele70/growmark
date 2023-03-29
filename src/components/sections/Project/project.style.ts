@@ -5,7 +5,7 @@ import { Title } from "../Services/Service.style";
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MDUp, SMDown, SMUp } from '../../../styles/responsive';
+import { MDUp, SMDown, SMUp, XSDown, XSUp } from '../../../styles/responsive';
 
 const Wrapper = styled(DefaultWrapper)`
   
@@ -27,9 +27,12 @@ ${SMDown({
 `;
 const ProjectTitle = styled(Title)`
   ${SMUp({
-  textAlign: "left"
-})}
-  margin-bottom:0;
+  textAlign: "left",
+  marginBottom: 0
+})}${SMDown({
+  marginBottom: 24
+})
+  }
 `;
 const SlideBtnContainer = styled.div`
   display:flex;
@@ -60,20 +63,14 @@ const SlideBtnIcon = styled(FontAwesomeIcon)`
   width:25px;
 `;
 const CardContainer = styled(Slider)`
-${MDUp({
-  // box shadow to first and second active slide only
-  ["& .slick-active, & .slick-active + .slick-active"]: {
-    ["& > div"]: {
-      boxShadow: " 0 0 45px rgba(0,0,0,0.07)"
-    }
-  }
-})
-  }
+
 // spacing beetween slides
 & .slick-slide{
-  padding-right:25px;
   // hack to see the box-shadow of slide on bottom
   margin-bottom:24px; 
+  ${SMUp({
+  paddingRight: 25
+})}
 }
 & .slick-list {
   // hack to see the box-shadow on bottom cause overflow-y
@@ -83,6 +80,8 @@ ${MDUp({
 
 `;
 const Card = styled.div`
+  box-shadow: 0 0 45px rgba(0,0,0,0.07);
+  border-radius:${({ theme }) => theme.borderRadius.small};
     &:hover {
       //refering to card image overlay
     & > div > div {

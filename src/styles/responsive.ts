@@ -45,6 +45,11 @@ const SMDown = (props: CSSObject) =>
   ${props}
 }`
 // XSmall devices breakpoint
+const XSUp = (props: CSSObject) =>
+  css`
+@media only screen and (min-width:567px) {
+  ${props}
+}`
 const XSDown = (props: CSSObject) =>
   css`
 @media only screen and (max-width:567px) {
@@ -59,5 +64,6 @@ export {
   MDDown,
   SMUp,
   SMDown,
+  XSUp,
   XSDown,
 }

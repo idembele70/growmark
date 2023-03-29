@@ -6,6 +6,7 @@ import Services from "../sections/Services";
 import Project from "../sections/Project";
 import Quote from "../sections/Quote";
 import Team from "../sections/Team";
+import Testimonial from "../sections/Testimonial";
 const Home = () => {
   return (
     <>
@@ -16,6 +17,7 @@ const Home = () => {
       <Project />
       <Quote />
       <Team />
+      <Testimonial />
     </>
   );
 };

@@ -32,26 +32,36 @@ const Project = () => {
   const settings: Settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
     slidesToScroll: 1,
     arrows: false,
     speed: 1000,
     // autoplay: true,
     autoplaySpeed: 5000,
+    centerMode: true,
+    centerPadding: "416px",
     responsive: [
+      {
+        breakpoint: 1400,
+        settings: {
+          centerPadding: "364px",
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          centerPadding: "304px",
+        },
+      },
       {
         breakpoint: 992,
         settings: {
-          centerMode: true,
-          slidesToShow: 1,
           centerPadding: "170px",
         },
       },
       {
         breakpoint: 768,
         settings: {
-          centerMode: false,
-          slidesToShow: 1,
+          centerPadding: "0",
         },
       },
     ],
