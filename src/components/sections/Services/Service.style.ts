@@ -2,8 +2,8 @@
 import styled from 'styled-components';
 import { LGDown, MDDown, SMDown } from '../../../styles/responsive';
 import { DefaultWrapper } from '../../layouts/Header/Header.style';
-import { Container as DefaultContainer } from "../Carousel/carousel.style"
-import { ContainerXXL } from '../Features/feature.style';
+import { Container as DefaultContainer } from "../Carousel/Carousel.style"
+import { ContainerXXL } from '../Features/Feature.style';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Container = styled(ContainerXXL)`

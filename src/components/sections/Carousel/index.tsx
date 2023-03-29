@@ -5,7 +5,7 @@ import {
   Container,
   NextBtn,
   PrevBtn,
-} from "./carousel.style";
+} from "./Carousel.style";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

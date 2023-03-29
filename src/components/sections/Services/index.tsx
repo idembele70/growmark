@@ -3,7 +3,7 @@ import {
   Icon,
   Title as IconTitle,
   IconContainer,
-} from "../Features/feature.style";
+} from "../Features/Feature.style";
 import { PrimaryParagraph } from "../About/About.style";
 import {
   Container,

@@ -125,6 +125,7 @@ const PrimaryParagraph = styled.p`
     font-size:1.25rem;
     color:${({ theme }) => theme.palette.primary.main};
     margin-bottom:16px;
+    font-weight:500;
   `;
 const Title = styled.h1`
     color:${({ theme }) => theme.palette.secondary.darker};

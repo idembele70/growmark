@@ -7,7 +7,7 @@ import {
 import { useMemo, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 import { PrimaryParagraph } from "../About/About.style";
-import { ContainerXXL, Description } from "../Features/feature.style";
+import { ContainerXXL, Description } from "../Features/Feature.style";
 import {
   Card,
   CardContainer,
@@ -25,7 +25,7 @@ import {
   Top,
   TopInfoContainer,
   Wrapper,
-} from "./project.style";
+} from "./Project.style";
 
 const Project = () => {
   // Slider settings

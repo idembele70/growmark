@@ -8,7 +8,7 @@ import {
   ItemWrapper,
   Title,
   Wrapper,
-} from "./feature.style";
+} from "./Feature.style";
 
 const Features = () => {
   // Feature item
