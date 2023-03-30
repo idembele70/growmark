@@ -5,6 +5,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import {
+  faArrowUp,
   faBars,
   faChevronDown,
   faEnvelope,
@@ -33,6 +34,8 @@ import {
   NavItemWrapper,
   QuoteBtn,
   SMLogo,
+  ScrollTopBtn,
+  ScrollTopBtnIcon,
   SocialContainer,
   SocialIcon,
   SocialIconContainer,
@@ -87,71 +90,112 @@ const Header = () => {
   const handleExpandDropDown = () => {
     setExpandDropDown(!expandDropDown);
   };
+  // Scroll Listener
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [displayScrollTop, setDisplayScrollTop] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth > 992) setIsDesktop(true);
+      else setIsDesktop(false);
+      if (window.scrollY > 300) {
+        setDisplayScrollTop(true);
+      } else {
+        setDisplayScrollTop(false);
+      }
+      if (window.scrollY > 300) {
+        setIsSticky(true);
+      } else setIsSticky(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  // Scroll to Top
+  const handleScrollToTop = () => {
+    setTimeout(() => {
+      window.scroll({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 1500);
+  };
   return (
-    <Container>
-      <Top>
-        <TopWrapper>
-          <LogoContainer to="/">
-            <Logo>GrowMark</Logo>
-          </LogoContainer>
-          <InfoContainer>
-            {infoItems.map(({ title, icon }, idx) => (
-              <Info key={idx}>
-                <InfoIcon icon={icon} />
-                {title}
-              </Info>
-            ))}
-            <SocialContainer>
-              {socialIcons.map((icon, idx) => (
-                <SocialIconContainer key={idx}>
-                  <SocialIcon icon={icon} />
-                </SocialIconContainer>
-              ))}
-            </SocialContainer>
-          </InfoContainer>
-        </TopWrapper>
-      </Top>
-      <Bottom>
-        <BottomWrapper>
-          <Nav>
+    <>
+      <Container isSticky={isSticky} isDesktop={isDesktop}>
+        <Top>
+          <TopWrapper>
             <LogoContainer to="/">
-              <SMLogo>GrowMark</SMLogo>
+              <Logo>GrowMark</Logo>
             </LogoContainer>
-            <BarsContainer onClick={handleExpand}>
-              <Bars icon={faBars} />
-            </BarsContainer>
-            <NavItemContainer isExpanded={expanded}>
-              <NavItemWrapper>
-                <NavItem to="/">Home</NavItem>
-                <NavItem to="/about">About</NavItem>
-                <NavItem to="/service">Services</NavItem>
-                <NavItem to="/project">Projects</NavItem>
-                <NavDropDownContainer
-                  onClick={handleExpandDropDown}
-                  isExpanded={expandDropDown}
-                >
-                  <NavDropDown isActive={dropDownActive} href="#">
-                    Pages
-                    <NavDropDownIcon icon={faChevronDown} />
-                  </NavDropDown>
-                  <NavDropDownItemContainer>
-                    <NavDropDownItem to="/feature">Features</NavDropDownItem>
-                    <NavDropDownItem to="/team">Our Team</NavDropDownItem>
-                    <NavDropDownItem to="/testimonial">
-                      Testimonial
-                    </NavDropDownItem>
-                    <NavDropDownItem to="/quotation">Quotation</NavDropDownItem>
-                    <NavDropDownItem to="/notFound">404 Page</NavDropDownItem>
-                  </NavDropDownItemContainer>
-                </NavDropDownContainer>
-                <NavItem to="/contact">Contact</NavItem>
-              </NavItemWrapper>
-            </NavItemContainer>
-            <QuoteBtn to="/">Get A Quote</QuoteBtn>
-          </Nav>
-        </BottomWrapper>
-      </Bottom>
-    </Container>
+            <InfoContainer>
+              {infoItems.map(({ title, icon }, idx) => (
+                <Info key={idx}>
+                  <InfoIcon icon={icon} />
+                  {title}
+                </Info>
+              ))}
+              <SocialContainer>
+                {socialIcons.map((icon, idx) => (
+                  <SocialIconContainer key={idx}>
+                    <SocialIcon icon={icon} />
+                  </SocialIconContainer>
+                ))}
+              </SocialContainer>
+            </InfoContainer>
+          </TopWrapper>
+        </Top>
+        <Bottom>
+          <BottomWrapper>
+            <Nav>
+              <LogoContainer to="/">
+                <SMLogo>GrowMark</SMLogo>
+              </LogoContainer>
+              <BarsContainer onClick={handleExpand}>
+                <Bars icon={faBars} />
+              </BarsContainer>
+              <NavItemContainer isExpanded={expanded}>
+                <NavItemWrapper>
+                  <NavItem to="/">Home</NavItem>
+                  <NavItem to="/about">About</NavItem>
+                  <NavItem to="/service">Services</NavItem>
+                  <NavItem to="/project">Projects</NavItem>
+                  <NavDropDownContainer
+                    onClick={handleExpandDropDown}
+                    isExpanded={expandDropDown}
+                  >
+                    <NavDropDown isActive={dropDownActive} href="#">
+                      Pages
+                      <NavDropDownIcon icon={faChevronDown} />
+                    </NavDropDown>
+                    <NavDropDownItemContainer>
+                      <NavDropDownItem to="/feature">Features</NavDropDownItem>
+                      <NavDropDownItem to="/team">Our Team</NavDropDownItem>
+                      <NavDropDownItem to="/testimonial">
+                        Testimonial
+                      </NavDropDownItem>
+                      <NavDropDownItem to="/quotation">
+                        Quotation
+                      </NavDropDownItem>
+                      <NavDropDownItem to="/notFound">404 Page</NavDropDownItem>
+                    </NavDropDownItemContainer>
+                  </NavDropDownContainer>
+                  <NavItem to="/contact">Contact</NavItem>
+                </NavItemWrapper>
+              </NavItemContainer>
+              <QuoteBtn to="/">Get A Quote</QuoteBtn>
+            </Nav>
+          </BottomWrapper>
+        </Bottom>
+      </Container>
+      <ScrollTopBtn
+        onClick={handleScrollToTop}
+        display={displayScrollTop.toString()}
+      >
+        <ScrollTopBtnIcon icon={faArrowUp} />
+      </ScrollTopBtn>
+    </>
   );
 };
 

@@ -201,9 +201,9 @@ const fadeOut = keyframes`
 }
 `
 const ModalContainer = styled.div<ModalContainerProps>`
-  visibility: hidden;
+  opacity: ${({ isopen }) => isopen ? 1 : 0};
   visibility: ${({ isopen }) => isopen ? "visible" : "hidden"};
-  animation: ${({ isopen }) => isopen ? fadeIn : fadeOut} 150ms linear;
+  transition: all 150ms ease;
   height:100vh;
   width:100vw;
   position:fixed;

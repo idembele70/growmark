@@ -2,10 +2,23 @@
 // Header styles
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { LGDown, MDDown, MDUp, SMDown, XLDown, XSDown } from '../../../styles/responsive';
-const Container = styled.div`
+
+interface ContainerProps {
+  isSticky: boolean;
+  isDesktop: boolean;
+}
+
+const Container = styled.div<ContainerProps>`
   z-index:10;
+  position:sticky;
+  top:0;
+  transform: translateY(
+    ${({ isSticky, isDesktop }) => (isSticky && isDesktop ? -70 : 0)}px
+  );
+  box-shadow: ${({ isSticky }) => (isSticky ? "0 2px 4px rgba(0,0,0,0.075)" : "none")};
+  transition: all 500ms ease;
 `;
 const DefaultWrapper = styled.div`
   max-width:1320px;
@@ -87,6 +100,7 @@ const SocialIcon = styled(FontAwesomeIcon)`
 // The bottom of the header style
 const Bottom = styled.header`
   background-color:${({ theme }) => theme.palette.common.white};
+  top:0;
 `;
 const BottomWrapper = styled(DefaultWrapper)`
   padding: 0 12px;
@@ -261,6 +275,112 @@ const QuoteBtn = styled(Link)`
 })
   }
 `;
+interface ScrollTopBtnProps {
+  display: string;
+}
+const ScrollTopBtnFadeIn = keyframes`
+0% {
+opacity:0;
+visibility:visible;
+},
+10% {
+  opacity:0.1
+},
+10% {
+  opacity:0.2
+},
+10% {
+  opacity:0.3
+},
+10% {
+  opacity:0.4
+},
+50% {
+  opacity:0.5
+},
+60% {
+  opacity:0.6
+}
+70% {
+  opacity:0.7
+}
+80% {
+  opacity:0.8
+}
+90% {
+  opacity:0.9
+}
+100%{
+opacity:1;
+visibility:visible;
+}
+,
+`;
+const ScrollTopBtnFadeOut = keyframes`
+0% {
+  opacity:1;
+  visibility:visible;
+},
+10% {
+  opacity:0.9
+},
+10% {
+  opacity:0.8
+},
+10% {
+  opacity:0.7
+},
+10% {
+  opacity:0.6
+},
+50% {
+  opacity:0.5
+},
+60% {
+  opacity:0.4
+}
+70% {
+  opacity:0.3
+}
+80% {
+  opacity:0.2
+}
+90% {
+  opacity:0.1
+}
+100%{
+  opacity:0;
+  visibility:hidden;
+}
+,
+`;
+
+const ScrollTopBtn = styled.button<ScrollTopBtnProps>`
+  width: 48px;
+  height: 48px;
+  background-color: ${({ theme }) => theme.palette.primary.main};
+  border: 1px solid ${({ theme }) => theme.palette.primary.main};
+  opacity: ${({ display }) => (display === "true" ? 1 : 0)};
+  border-radius: 50%;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 0;
+  cursor: pointer;
+  animation: ${({ display }) => display === "true" ? ScrollTopBtnFadeIn : ScrollTopBtnFadeOut} 1500ms;
+  visibility: ({display}=>display==="true" ? "visible" : "hidden");
+  z-index: 4;
+  &:hover {
+    background-color: ${({ theme }) => theme.palette.primary.darker};
+  }
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(83, 118, 252, 0.5);
+  }
+`;
+const ScrollTopBtnIcon = styled(FontAwesomeIcon)`
+  color: ${({ theme }) => theme.palette.common.white};
+  font-size: 1.5rem;
+`;
 export {
   Container,
   DefaultWrapper,
@@ -289,4 +409,6 @@ export {
   NavDropDownItemContainer,
   NavDropDownItem,
   QuoteBtn,
+  ScrollTopBtn,
+  ScrollTopBtnIcon,
 }
