@@ -43,7 +43,7 @@ import {
   TopWrapper,
 } from "./Header.style";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Header = () => {
   interface IInfo {
@@ -81,6 +81,7 @@ const Header = () => {
   }, [pathname]);
   // expand navbar handler
   const [expanded, setExpanded] = useState(false);
+
   const handleExpand = () => {
     setExpanded(!expanded);
     if (expandDropDown) setExpandDropDown(false);
@@ -90,6 +91,7 @@ const Header = () => {
   const handleExpandDropDown = () => {
     setExpandDropDown(!expandDropDown);
   };
+
   // Scroll Listener
   const [isDesktop, setIsDesktop] = useState(false);
   const [displayScrollTop, setDisplayScrollTop] = useState(false);
@@ -100,12 +102,11 @@ const Header = () => {
       else setIsDesktop(false);
       if (window.scrollY > 300) {
         setDisplayScrollTop(true);
+        setIsSticky(true);
       } else {
         setDisplayScrollTop(false);
+        setIsSticky(false);
       }
-      if (window.scrollY > 300) {
-        setIsSticky(true);
-      } else setIsSticky(false);
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -165,7 +166,11 @@ const Header = () => {
                     onClick={handleExpandDropDown}
                     isExpanded={expandDropDown}
                   >
-                    <NavDropDown isActive={dropDownActive} href="#">
+                    <NavDropDown
+                      onClick={(e) => e.preventDefault()}
+                      isActive={dropDownActive}
+                      href="#"
+                    >
                       Pages
                       <NavDropDownIcon icon={faChevronDown} />
                     </NavDropDown>

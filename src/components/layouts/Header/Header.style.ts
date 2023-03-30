@@ -12,11 +12,9 @@ interface ContainerProps {
 
 const Container = styled.div<ContainerProps>`
   z-index:10;
-  position:sticky;
-  top:0;
-  transform: translateY(
-    ${({ isSticky, isDesktop }) => (isSticky && isDesktop ? -70 : 0)}px
-  );
+  position:${({ isSticky }) => isSticky ? "sticky" : "initial"};
+  //top:0;
+ top:${({ isSticky, isDesktop }) => (isSticky && isDesktop ? -70 : isSticky ? 0 : -110)}px;
   box-shadow: ${({ isSticky }) => (isSticky ? "0 2px 4px rgba(0,0,0,0.075)" : "none")};
   transition: all 500ms ease;
 `;

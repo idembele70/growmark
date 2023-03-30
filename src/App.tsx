@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Footer from "./components/layouts/Footer";
 gsap.registerPlugin(ScrollTrigger);
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/h" element={<>Home</>} />
         <Route path="*" element={<>not gounf</>} />
       </Routes>
+      <Footer />
     </>
   );
 }
