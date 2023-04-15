@@ -24,7 +24,7 @@ import {
 } from "./Quote.style";
 import { ParentWrapper, PrimaryParagraph } from "../About/About.style";
 import { faChevronDown, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { ProjectTitle } from "../Project/Project.style";
+import { ProjectTitle } from "../Projects/Projects.style";
 
 const Quote = () => {
   //select

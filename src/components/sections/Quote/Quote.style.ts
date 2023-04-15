@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Title } from '../Services/Service.style';
 import { LGDown, MDDown, XSDown } from '../../../styles/responsive';
-import { ProjectTitle } from '../Project/Project.style';
+import { ProjectTitle } from '../Projects/Projects.style';
 
 const ParentWrapper = styled(DefaultWrapper)`
 `;

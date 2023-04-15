@@ -8,7 +8,7 @@ import {
   Top,
   TopInfoContainer,
   Wrapper,
-} from "../Project/Project.style";
+} from "../Projects/Projects.style";
 import { PrimaryParagraph } from "../About/About.style";
 import {
   faChevronLeft,
@@ -72,7 +72,7 @@ const Testimonial = () => {
     name: string;
     profession: string;
   }
-  const cardItems = useMemo(
+  const cardItems: ICardItem[] = useMemo(
     () => [
       {
         img: 1,

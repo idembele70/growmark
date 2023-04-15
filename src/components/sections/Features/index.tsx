@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   ContainerXXL as Container,
   Description,
@@ -9,6 +9,9 @@ import {
   Title,
   Wrapper,
 } from "./Feature.style";
+import { useLocation } from "react-router-dom";
+import { PrimaryParagraph } from "../About/About.style";
+import { Title as TitleH1 } from "../Services/Service.style";
 
 const Features = () => {
   // Feature item
@@ -46,9 +49,21 @@ const Features = () => {
     ],
     []
   );
+  // check if it's feature page
+  const { pathname } = useLocation();
+  const [isFeaturePage, setIsFeaturePage] = useState(false);
+  useEffect(() => {
+    if (pathname === "/feature") setIsFeaturePage(true);
+  }, []);
   return (
     <Container>
       <Wrapper>
+        {isFeaturePage && (
+          <>
+            <PrimaryParagraph>Features</PrimaryParagraph>
+            <TitleH1>Why People Choose Us</TitleH1>
+          </>
+        )}
         <ItemWrapper>
           {featureItems.map(({ img, title, description }, idx) => (
             <ItemContainer>

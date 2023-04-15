@@ -180,9 +180,7 @@ const Header = () => {
                       <NavDropDownItem to="/testimonial">
                         Testimonial
                       </NavDropDownItem>
-                      <NavDropDownItem to="/quotation">
-                        Quotation
-                      </NavDropDownItem>
+                      <NavDropDownItem to="/quote">Quotation</NavDropDownItem>
                       <NavDropDownItem to="/notFound">404 Page</NavDropDownItem>
                     </NavDropDownItemContainer>
                   </NavDropDownContainer>

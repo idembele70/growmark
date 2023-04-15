@@ -25,7 +25,7 @@ import {
   Top,
   TopInfoContainer,
   Wrapper,
-} from "./Project.style";
+} from "./Projects.style";
 
 const Project = () => {
   // Slider settings

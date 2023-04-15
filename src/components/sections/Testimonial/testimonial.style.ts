@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { CardContainer } from '../Project/Project.style';
+import { CardContainer } from '../Projects/Projects.style';
 
 const TestimonialCardContainer = styled(CardContainer)`
   // second slide
-   & .slick-current +.slick-active{
+   & .slick-current {
     // card item
     & .card {
       background-color:${({ theme }) => theme.palette.primary.main};

@@ -5,19 +5,10 @@ import Home from "./components/pages/Home";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from "./components/layouts/Footer";
+import RoutesWrapper from "./components/containers/RoutesWrapper";
 gsap.registerPlugin(ScrollTrigger);
 function App() {
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/h" element={<>Home</>} />
-        <Route path="*" element={<>not gounf</>} />
-      </Routes>
-      <Footer />
-    </>
-  );
+  return <RoutesWrapper />;
 }
 
 export default App;

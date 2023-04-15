@@ -15,11 +15,14 @@ ${XLUp({
 
 const Wrapper = styled(DefaultWrapper)`
 background-color:${({ theme }) => theme.palette.common.white};
-box-shadow: 0 0 45px rgba(0,0,0,.08);
+display:flex;
+flex-direction: column;
+align-items: center;
 `;
 
 const ItemWrapper = styled.div`
   padding: 0 12px;
+  box-shadow: 0 0 45px rgba(0,0,0,.08);
   display:flex;
   flex-wrap:wrap;
   ${MDDown({
