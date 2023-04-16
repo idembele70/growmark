@@ -164,7 +164,7 @@ const ItemParagraph = styled.p`
   color:${({ theme }) => theme.palette.common.black};
   margin-bottom:0;
 `;
-const ExploreMore = styled(Link)`
+const RoundedBtnLink = styled(Link)`
   color:${({ theme }) => theme.palette.primary.light};
   font-size:1rem;
   background-color:${({ theme }) => theme.palette.primary.main};
@@ -175,6 +175,10 @@ const ExploreMore = styled(Link)`
   user-select:none;
   transition: all 500ms ease-in-out;
   line-height:1.5;
+  &:hover {
+    background-color: ${({ theme }) => theme.palette.primary.darker};;
+    
+  }
 `;
 // modal style
 interface ModalContainerProps {
@@ -275,7 +279,7 @@ export {
   ItemIcon,
   ItemTitle,
   ItemParagraph,
-  ExploreMore,
+  RoundedBtnLink,
   ModalContainer,
   Modal,
   ModalHeader,

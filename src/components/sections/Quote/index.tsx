@@ -1,30 +1,29 @@
+import { faChevronDown, faPhone } from "@fortawesome/free-solid-svg-icons";
 import React, { useMemo, useState } from "react";
+import { ParentWrapper, PrimaryParagraph } from "../About/About.style";
 import { ContainerXXL } from "../Features/Feature.style";
 import {
+  Button,
   Col,
   ContactContainer,
   Form,
+  FormCol,
+  FormRow,
   Icon,
   IconContainer,
   Input,
-  FormCol,
   Label,
   Number,
   Option,
   ParagraphWithLargeMargin,
   ParagraphWithMediumMargin,
+  QuoteTitle,
   RightTitle,
   Select,
   SelectIcon,
-  Wrapper,
   TextArea,
-  FormRow,
-  Button,
-  QuoteTitle,
+  Wrapper,
 } from "./Quote.style";
-import { ParentWrapper, PrimaryParagraph } from "../About/About.style";
-import { faChevronDown, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { ProjectTitle } from "../Projects/Projects.style";
 
 const Quote = () => {
   //select

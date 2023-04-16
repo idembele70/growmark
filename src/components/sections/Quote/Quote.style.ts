@@ -86,11 +86,13 @@ const Form = styled.form`
   flex-wrap:wrap;
   margin: -16px -8px 0;
 `;
-const FormCol = styled.div`
-  width:50%;
-  padding:0 8px;
-  margin-top:16px;
-  position:relative;
+const DefaultFormCol = styled.div`
+width:50%;
+padding:0 8px;
+margin-top:16px;
+position:relative;
+`;
+const FormCol = styled(DefaultFormCol)`
   ${XSDown({
   width: "100%"
 })}
@@ -171,22 +173,25 @@ const TextArea = styled.textarea`
     box-shadow: 0 0 0 0.25rem rgba(71,97,255,0.25);
   }
 `;
-const Button = styled.button`
+const FormButton = styled.button`
+background-color:${({ theme }) => theme.palette.primary.main};
+color:${({ theme }) => theme.palette.common.white};
+border:1px solid ${({ theme }) => theme.palette.primary.main};
+transition:all 500ms ease;
+&:hover{
+  border-color: #394ECC;
+  background-color:${({ theme }) => theme.palette.primary.darker};
+}
+&:focus {
+  border-color:#a3b0ff;
+  box-shadow: 0 0 0 0.25rem rgba(71,97,255,0.25);
+} 
+`;
+
+const Button = styled(FormButton)`
   width:100%;
-  background-color:${({ theme }) => theme.palette.primary.main};
-  color:${({ theme }) => theme.palette.common.white};
   padding:16px 12px;
   border-radius:${({ theme }) => theme.borderRadius.small};
-  border:1px solid ${({ theme }) => theme.palette.primary.main};
-  transition:all 500ms ease;
-  &:hover{
-    border-color: #394ECC;
-    background-color:${({ theme }) => theme.palette.primary.darker};
-  }
-  &:focus {
-    border-color:#a3b0ff;
-    box-shadow: 0 0 0 0.25rem rgba(71,97,255,0.25);
-  }
 `;
 export {
   ParentWrapper,
@@ -201,6 +206,7 @@ export {
   Number,
   RightTitle,
   Form,
+  DefaultFormCol,
   FormCol,
   Input,
   Label,
@@ -209,5 +215,6 @@ export {
   Option,
   FormRow,
   TextArea,
+  FormButton,
   Button
 }

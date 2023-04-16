@@ -28,9 +28,10 @@ ${SMDown({
 const ProjectTitle = styled(Title)`
   ${SMUp({
   textAlign: "left",
-  marginBottom: 0
-})}${SMDown({
-  marginBottom: 24
+  marginBottom: 0,
+})};
+${SMDown({
+  marginBottom: 24,
 })
   }
 `;

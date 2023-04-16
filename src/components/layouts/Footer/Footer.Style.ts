@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { DefaultWrapper } from '../Header/Header.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { MDDown, SMDown, SMUp, XSDown, XSUp } from '../../../styles/responsive';
+import styled from 'styled-components';
+import { MDDown, SMDown, SMUp } from '../../../styles/responsive';
+import { DefaultWrapper } from '../Header/Header.style';
 
 const Container = styled.div`
   width:100%;
@@ -46,14 +46,16 @@ const MediaContainer = styled.div`
   display:flex;
   padding-top:16px;
 `;
-const MediaItem = styled(Link)`
+const RoundedIconContainer = styled(Link)`
   height:38px;
   width:38px;
-  background-color:${({ theme }) => theme.palette.primary.light};
   border-radius:${({ theme }) => theme.borderRadius.medium};
   display:flex;
   align-items:center;
   justify-content:center;
+`;
+const MediaItem = styled(RoundedIconContainer)`
+  background-color:${({ theme }) => theme.palette.primary.light};
   margin-right:8px;
 `;
 const MediaIcon = styled(FontAwesomeIcon)`
@@ -162,30 +164,10 @@ const CopyrightLink = styled(Link)`
   }
 `;
 export {
-  Container,
-  ParentWrapper,
-  Wrapper,
-  Col,
-  ColTitle,
-  OfficeIcon,
-  OfficeParagraph,
-  MediaContainer,
-  MediaItem,
-  MediaIcon,
-  QuickLinkItemContainer,
-  QuickLinkItem,
-  QuickLinkIcon,
-  BusinessHoursItemContainer,
-  BusinessHoursItem,
-  Date,
-  Hours,
-  NewsletterParagraph,
-  InputContainer,
-  Input,
-  SignUp,
-  CopyrightContainer,
-  CopyrightParentWrapper,
-  CopyrightWrapper,
-  CopyrightItem,
-  CopyrightLink,
-}
+  BusinessHoursItem, BusinessHoursItemContainer, Col,
+  ColTitle, Container, CopyrightContainer, CopyrightItem,
+  CopyrightLink, CopyrightParentWrapper,
+  CopyrightWrapper, Date,
+  Hours, Input, InputContainer, MediaContainer, MediaIcon, RoundedIconContainer, MediaItem, NewsletterParagraph, OfficeIcon,
+  OfficeParagraph, ParentWrapper, QuickLinkIcon, QuickLinkItem, QuickLinkItemContainer, SignUp, Wrapper
+};

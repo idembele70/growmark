@@ -9,6 +9,8 @@ import Project from "../pages/Project";
 import Feature from "../pages/Feature";
 import Team from "../pages/Team";
 import Testimonial from "../pages/Testimonial";
+import NotFound from "../pages/NotFound";
+import Contact from "../pages/Contact";
 
 const RoutesWrapper = () => {
   return (
@@ -23,7 +25,8 @@ const RoutesWrapper = () => {
         <Route path="/team" element={<Team />} />
         <Route path="/testimonial" element={<Testimonial />} />
         <Route path="/quote" element={<Testimonial />} />
-        <Route path="*" element={<>not gounf</>} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

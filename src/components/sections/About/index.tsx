@@ -4,7 +4,7 @@ import {
   Close,
   CloseContainer,
   Container,
-  ExploreMore,
+  RoundedBtnLink,
   Icon,
   Iframe,
   Item,
@@ -96,7 +96,7 @@ const About = () => {
                     </Item>
                   ))}
                 </ItemContainer>
-                <ExploreMore to="/">Explore More</ExploreMore>
+                <RoundedBtnLink to="/">Explore More</RoundedBtnLink>
               </RightWrapper>
             </Right>
           </Wrapper>
