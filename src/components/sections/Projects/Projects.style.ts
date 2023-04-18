@@ -1,11 +1,11 @@
 // Project styling
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 import styled from 'styled-components';
+import { SMDown, SMUp } from '../../../styles/responsive';
 import { DefaultWrapper } from '../../layouts/Header/Header.style';
 import { Title } from "../Services/Service.style";
-import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { MDUp, SMDown, SMUp, XSDown, XSUp } from '../../../styles/responsive';
 
 const Wrapper = styled(DefaultWrapper)`
   
@@ -62,6 +62,9 @@ const SlideBtnIcon = styled(FontAwesomeIcon)`
   display:block;
   height:25px;
   width:25px;
+`;
+const Bottom = styled.div`
+  
 `;
 const CardContainer = styled(Slider)`
 
@@ -138,7 +141,7 @@ const Info = styled.div`
   padding: 24px;
 `;
 const CardLink = styled(Link)`
-display:block;
+  display:block;
   font-size:1.25rem;
   margin-bottom:8px;
   font-weight:500;
@@ -150,20 +153,7 @@ display:block;
   }
 `;
 export {
-  Wrapper,
-  Top,
-  TopInfoContainer,
-  ProjectTitle,
-  SlideBtnContainer,
-  SlideBtn,
-  SlideBtnIcon,
-  CardContainer,
-  Card,
-  ImageContainer,
-  CardImage,
-  CardImgOverlay,
-  IconContainer,
-  Icon,
-  Info,
-  CardLink,
-}
+  Bottom, Card, CardContainer, CardImage,
+  CardImgOverlay, CardLink, Icon, IconContainer, ImageContainer, Info, ProjectTitle, SlideBtn, SlideBtnContainer, SlideBtnIcon, Top,
+  TopInfoContainer, Wrapper
+};

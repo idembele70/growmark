@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { DefaultWrapper } from '../../../../layouts/Header/Header.style';
-import { LGDown, MDUp, XSDown } from '../../../../../styles/responsive';
+import { DefaultWrapper } from '../../../layouts/Header/Header.style';
+import { LGDown, MDUp, XSDown } from '../../../../styles/responsive';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`

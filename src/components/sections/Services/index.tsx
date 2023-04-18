@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useLayoutEffect, useMemo, useRef } from "react";
 import {
   Icon,
   Title as IconTitle,
@@ -17,8 +17,11 @@ import {
   BtnLink,
   BtnContainer,
   ItemContainerWrapper,
+  Top,
 } from "./Service.style";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { gsap } from "gsap";
+import { fadeInUp, start } from "../../shared/gsapAnimations";
 
 const Services = () => {
   // Services items
@@ -68,14 +71,57 @@ const Services = () => {
     ],
     []
   );
+  //ScrollTrigger
+  const containerEl = useRef<HTMLDivElement>(null);
+  const topEl = useRef<HTMLDivElement>(null);
+  const itemWrapperEl = useRef<HTMLDivElement>(null);
+  const ItemContainerEls = useRef<HTMLDivElement[]>([]);
+  const addToItemContainerEls = (el: HTMLDivElement) => {
+    if (el && !ItemContainerEls.current.includes(el))
+      ItemContainerEls.current.push(el);
+  };
+  // ScrollTrigger
+  useLayoutEffect(() => {
+    // Top
+    const topTween = gsap.from(topEl.current, {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start,
+      },
+    });
+    // Bottom
+    const itemContainerTween: GSAPTween[] = [];
+    ItemContainerEls.current.forEach((el) => {
+      const tween = gsap.from(el, {
+        ...fadeInUp,
+        delay: 0.3,
+        scrollTrigger: {
+          trigger: el,
+          start: "top-=670px center",
+        },
+      });
+      itemContainerTween.push(tween);
+    });
+
+    return () => {
+      [topTween, ...itemContainerTween].forEach((el) =>
+        el.scrollTrigger?.kill()
+      );
+    };
+  }, []);
+
   return (
-    <Container>
+    <Container ref={containerEl}>
       <Wrapper>
-        <PrimaryParagraph>Our Services</PrimaryParagraph>
-        <Title>Digital Marketing Services that We Offer</Title>
-        <ItemWrapper>
+        <Top ref={topEl}>
+          <PrimaryParagraph>Our Services</PrimaryParagraph>
+          <Title>Digital Marketing Services that We Offer</Title>
+        </Top>
+        <ItemWrapper ref={itemWrapperEl}>
           {serviceItems.map(({ img, title, description }, idx) => (
-            <ItemContainer>
+            <ItemContainer ref={addToItemContainerEls} key={title}>
               <ItemContainerWrapper>
                 <Item className="item">
                   <IconContainer>

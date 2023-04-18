@@ -14,6 +14,11 @@ display:flex;
 flex-direction:column;
 align-items:center;
 `;
+const Top = styled.div`
+display:flex;
+flex-direction:column;
+align-items:center;
+`;
 const Title = styled.h1`
   font-size:3rem;
   margin-bottom:48px;
@@ -98,6 +103,7 @@ const BtnIcon = styled(FontAwesomeIcon)`
 export {
   Container,
   Wrapper,
+  Top,
   Description,
   Item,
   ItemWrapper,

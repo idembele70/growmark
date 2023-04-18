@@ -1,5 +1,5 @@
 import { faChevronDown, faPhone } from "@fortawesome/free-solid-svg-icons";
-import React, { useMemo, useState } from "react";
+import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ParentWrapper, PrimaryParagraph } from "../About/About.style";
 import { ContainerXXL } from "../Features/Feature.style";
 import {
@@ -24,6 +24,8 @@ import {
   TextArea,
   Wrapper,
 } from "./Quote.style";
+import { gsap } from "gsap";
+import { fadeInUp, start } from "../../shared/gsapAnimations";
 
 const Quote = () => {
   //select
@@ -42,11 +44,36 @@ const Quote = () => {
     ],
     []
   );
+  // ScrollTrigger
+  const containerEl = useRef<HTMLDivElement>(null);
+  const leftEl = useRef<HTMLDivElement>(null);
+  const rightEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const leftTween = gsap.from(leftEl.current, {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start,
+      },
+    });
+    const rightTween = gsap.from(rightEl.current, {
+      ...fadeInUp,
+      delay: 0.5,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start,
+      },
+    });
+    return () => {
+      [leftTween, rightTween].forEach((el) => el.scrollTrigger?.kill());
+    };
+  }, []);
   return (
-    <ContainerXXL>
+    <ContainerXXL ref={containerEl}>
       <ParentWrapper>
         <Wrapper>
-          <Col>
+          <Col ref={leftEl}>
             <PrimaryParagraph>Get A Quote</PrimaryParagraph>
             <QuoteTitle>Need Our Expert Help? We're Here!</QuoteTitle>
             <ParagraphWithMediumMargin>
@@ -66,7 +93,7 @@ const Quote = () => {
               <Number>+012 345 6789</Number>
             </ContactContainer>
           </Col>
-          <Col>
+          <Col ref={rightEl}>
             <RightTitle>Get A Free Quote</RightTitle>
             <Form>
               <FormCol>

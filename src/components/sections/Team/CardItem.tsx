@@ -34,7 +34,7 @@ const CardItem: React.FC<CardItemProps> = ({ img, name, job }) => {
   );
 
   return (
-    <Card>
+    <>
       <CardWrapper>
         <CardImageContainer>
           <CardImage
@@ -48,7 +48,7 @@ const CardItem: React.FC<CardItemProps> = ({ img, name, job }) => {
         </CardInfo>
         <SocialList>
           {socialIcons.map((icon, idx) => (
-            <SocialListItem delay={0.1 * idx}>
+            <SocialListItem key={idx} delay={0.1 * idx}>
               <SocialIconContainer to="">
                 <SocialIcon icon={icon} />
               </SocialIconContainer>
@@ -56,7 +56,7 @@ const CardItem: React.FC<CardItemProps> = ({ img, name, job }) => {
           ))}
         </SocialList>
       </CardWrapper>
-    </Card>
+    </>
   );
 };
 

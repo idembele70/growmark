@@ -8,7 +8,6 @@ const CardContainer = styled.div`
   margin:-24px -12px 0;
   flex-wrap:wrap;
 `;
-
 const Card = styled.div`
   width:25%;
   padding: 0 12px;
@@ -20,6 +19,7 @@ const Card = styled.div`
   width: "100%"
 })}
   `;
+
 const CardWrapper = styled.div`
   box-shadow: 0px 0px 45px rgba(0,0,0,0.07);
   background-color:#FFF;

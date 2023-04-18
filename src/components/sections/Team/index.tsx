@@ -1,9 +1,11 @@
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import { PrimaryParagraph } from "../About/About.style";
 import { ContainerXXL } from "../Features/Feature.style";
-import { Title, Wrapper } from "../Services/Service.style";
+import { Title, Top, Wrapper } from "../Services/Service.style";
 import CardItem from "./CardItem";
-import { CardContainer } from "./Team.style";
+import { Card, CardContainer } from "./Team.style";
+import { gsap } from "gsap";
+import { fadeInUp, start } from "../../shared/gsapAnimations";
 
 const Team = () => {
   // CardItem
@@ -38,14 +40,50 @@ const Team = () => {
     []
   );
 
+  // ScrollTrigger
+  const containerEl = useRef<HTMLDivElement>(null);
+  const topEl = useRef<HTMLDivElement>(null);
+  const cardContainerEl = useRef<HTMLDivElement>(null);
+  const cardItemEls = useRef<HTMLDivElement[]>([]);
+  const addToCardItems = (el: HTMLDivElement) => {
+    if (el && !cardItemEls.current.includes(el)) cardItemEls.current.push(el);
+  };
+  useLayoutEffect(() => {
+    const topTween = gsap.from(topEl.current, {
+      ...fadeInUp,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start,
+      },
+    });
+    const cardItemTween: GSAPTween[] = [];
+    cardItemEls.current.forEach((el, idx) => {
+      const tween = gsap.from(el, {
+        ...fadeInUp,
+        delay: 0.2 * idx,
+        scrollTrigger: {
+          trigger: cardContainerEl.current,
+          start,
+        },
+      });
+      cardItemTween.push(tween);
+    });
+    return () => {
+      [topTween, ...cardItemTween].forEach((el) => el.scrollTrigger?.kill());
+    };
+  }, []);
   return (
-    <ContainerXXL>
+    <ContainerXXL ref={containerEl}>
       <Wrapper>
-        <PrimaryParagraph>Our Team</PrimaryParagraph>
-        <Title>Our Expert People Ready to Help You</Title>
-        <CardContainer>
+        <Top ref={topEl}>
+          <PrimaryParagraph>Our Team</PrimaryParagraph>
+          <Title>Our Expert People Ready to Help You</Title>
+        </Top>
+        <CardContainer ref={cardContainerEl}>
           {CardItems.map((props, idx) => (
-            <CardItem {...props} key={idx} />
+            <Card ref={addToCardItems} key={idx}>
+              <CardItem {...props} />
+            </Card>
           ))}
         </CardContainer>
       </Wrapper>

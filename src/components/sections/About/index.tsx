@@ -1,4 +1,10 @@
-import React, { EventHandler, useMemo, useRef, useState } from "react";
+import React, {
+  EventHandler,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   BtnContainer,
   Close,
@@ -27,6 +33,8 @@ import {
   Wrapper,
 } from "./About.style";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { gsap } from "gsap";
+import { fadeIn } from "../../shared/gsapAnimations";
 const About = () => {
   //About Item
   interface IAboutItem {
@@ -62,7 +70,22 @@ const About = () => {
       if (isModalOpen) document.body.style.overflow = "visible";
     }
   };
+  // right ScrollTrigger
+  const rightEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const tween = gsap.from(rightEl.current, {
+      ...fadeIn,
+      delay: 0.5,
+      scrollTrigger: {
+        trigger: rightEl.current,
+        start: "top-=320px center",
+      },
+    });
 
+    return () => {
+      tween.scrollTrigger?.kill();
+    };
+  }, []);
   return (
     <>
       <Container>
@@ -73,7 +96,7 @@ const About = () => {
                 <Icon />
               </BtnContainer>
             </Left>
-            <Right>
+            <Right ref={rightEl}>
               <RightWrapper>
                 <PrimaryParagraph>About Us</PrimaryParagraph>
                 <Title>

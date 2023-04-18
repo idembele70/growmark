@@ -2,6 +2,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 import { XSDown } from '../../../styles/responsive';
+import Slider from 'react-slick';
 
 const Container = styled.section`
   margin-bottom:48px;
@@ -9,6 +10,11 @@ const Container = styled.section`
   & .slick-active {
     z-index:1;
   }
+overflow: hidden;
+`;
+const SlideContainer = styled(Slider)`
+  width:100vw;
+  aspect-ratio:16/9;
 `;
 const Btn = styled.button`
   width:15%;
@@ -57,6 +63,7 @@ const BtnIcon = styled(FontAwesomeIcon)`
 `;
 export {
   Container,
+  SlideContainer,
   PrevBtn,
   NextBtn,
   BtnIconContainer,

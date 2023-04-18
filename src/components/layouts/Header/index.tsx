@@ -43,7 +43,14 @@ import {
   TopWrapper,
 } from "./Header.style";
 import { useLocation } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import { gsap } from "gsap";
 
 const Header = () => {
   interface IInfo {
@@ -122,9 +129,21 @@ const Header = () => {
       });
     }, 1500);
   };
+  // ScrollTrigger
+  const containerEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const tween = gsap.to(containerEl.current, {
+      opacity: 1,
+      duration: 1,
+      delay: 0.1,
+    });
+    return () => {
+      tween.scrollTrigger?.kill();
+    };
+  }, []);
   return (
     <>
-      <Container isSticky={isSticky} isDesktop={isDesktop}>
+      <Container ref={containerEl} isSticky={isSticky} isDesktop={isDesktop}>
         <Top>
           <TopWrapper>
             <LogoContainer to="/">

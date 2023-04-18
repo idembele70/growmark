@@ -10,7 +10,9 @@ interface ContainerProps {
   isDesktop: boolean;
 }
 
+
 const Container = styled.div<ContainerProps>`
+opacity:0;
   z-index:10;
   position:${({ isSticky }) => isSticky ? "sticky" : "initial"};
   //top:0;
@@ -366,7 +368,7 @@ const ScrollTopBtn = styled.button<ScrollTopBtnProps>`
   padding: 0;
   cursor: pointer;
   animation: ${({ display }) => display === "true" ? ScrollTopBtnFadeIn : ScrollTopBtnFadeOut} 1500ms;
-  visibility: ({display}=>display==="true" ? "visible" : "hidden");
+  visibility: (({ display }) => display ==="true" ? "visible" : "hidden");
   z-index: 4;
   &:hover {
     background-color: ${({ theme }) => theme.palette.primary.darker};

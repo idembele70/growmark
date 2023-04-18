@@ -1,23 +1,22 @@
-import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { gsap } from "gsap";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import Slider, { Settings } from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { fadeIn } from "../../shared/gsapAnimations";
 import {
   BtnIcon,
   BtnIconContainer,
   Container,
   NextBtn,
   PrevBtn,
+  SlideContainer,
 } from "./Carousel.style";
-import Slider, { Settings } from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {
-  faArrowLeft,
-  faArrowRight,
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-import SliderItem from "./components/SliderItem";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import SliderItem from "./SliderItem";
 
 const Carousel = () => {
   //Slider settings
@@ -98,9 +97,22 @@ const Carousel = () => {
       evenTween.scrollTrigger?.kill();
     };
   }, [restart]);
+  // Container ScrollTrigger
+  const containerEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const tween = gsap.from(containerEl.current, {
+      ...fadeIn,
+      delay: 0.1,
+    });
+
+    return () => {
+      tween.scrollTrigger?.kill();
+    };
+  }, []);
+
   return (
-    <Container>
-      <Slider
+    <Container ref={containerEl}>
+      <SlideContainer
         beforeChange={(curr, next) => {
           setrestart(next);
         }}
@@ -110,7 +122,7 @@ const Carousel = () => {
         {sliderItems.map((props, idx) => (
           <SliderItem {...props} idx={idx} key={idx} />
         ))}
-      </Slider>
+      </SlideContainer>
       <PrevBtn onClick={() => handleScroll("left")}>
         <BtnIconContainer>
           <BtnIcon icon={faChevronLeft} />

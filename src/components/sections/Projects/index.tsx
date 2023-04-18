@@ -4,11 +4,12 @@ import {
   faEye,
   faLink,
 } from "@fortawesome/free-solid-svg-icons";
-import { useMemo, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 import { PrimaryParagraph } from "../About/About.style";
 import { ContainerXXL, Description } from "../Features/Feature.style";
 import {
+  Bottom,
   Card,
   CardContainer,
   CardImage,
@@ -26,6 +27,8 @@ import {
   TopInfoContainer,
   Wrapper,
 } from "./Projects.style";
+import { gsap } from "gsap";
+import { fadeInUp, start } from "../../shared/gsapAnimations";
 
 const Project = () => {
   // Slider settings
@@ -107,15 +110,53 @@ const Project = () => {
     if (direction === "left") sliderEl.current?.slickPrev();
     else sliderEl.current?.slickNext();
   };
+  // ScrollTrigger
+  const containerEl = useRef<HTMLDivElement>(null);
+  const topInfoContainerEl = useRef<HTMLDivElement>(null);
+  const bottomEl = useRef<HTMLDivElement>(null);
+  const slideBtnContainerEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const topInfoContainerTween = gsap.from(topInfoContainerEl.current, {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start,
+      },
+    });
+    const slideBtnContainerTween = gsap.from(slideBtnContainerEl.current, {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: bottomEl.current,
+        start,
+      },
+    });
+    const projectSliderTween = gsap.from(".project-slider", {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: bottomEl.current,
+        start,
+      },
+    });
+    return () => {
+      [
+        slideBtnContainerTween,
+        projectSliderTween,
+        topInfoContainerTween,
+      ].forEach((el) => el.scrollTrigger?.kill());
+    };
+  }, []);
   return (
-    <ContainerXXL>
+    <ContainerXXL ref={containerEl}>
       <Wrapper>
         <Top>
-          <TopInfoContainer>
+          <TopInfoContainer ref={topInfoContainerEl}>
             <PrimaryParagraph>Our Projects</PrimaryParagraph>
             <ProjectTitle>We've Done Lot's of Awesome Projects</ProjectTitle>
           </TopInfoContainer>
-          <SlideBtnContainer>
+          <SlideBtnContainer ref={slideBtnContainerEl}>
             <SlideBtn onClick={() => handleSlide("left")}>
               <SlideBtnIcon icon={faChevronLeft} />
             </SlideBtn>
@@ -124,30 +165,36 @@ const Project = () => {
             </SlideBtn>
           </SlideBtnContainer>
         </Top>
-        <CardContainer ref={sliderEl} {...settings}>
-          {cardItems.map(({ img, title, description }, idx) => (
-            <Card className="card" key={idx}>
-              <ImageContainer>
-                <CardImage
-                  src={`${process.env.PUBLIC_URL}/assets/project/project-${img}.jpg`}
-                  alt={title}
-                />
-                <CardImgOverlay>
-                  <IconContainer to="/">
-                    <Icon icon={faEye} />
-                  </IconContainer>
-                  <IconContainer to="/">
-                    <Icon icon={faLink} />
-                  </IconContainer>
-                </CardImgOverlay>
-              </ImageContainer>
-              <Info>
-                <CardLink to="">{title}</CardLink>
-                <Description>{description}</Description>
-              </Info>
-            </Card>
-          ))}
-        </CardContainer>
+        <Bottom ref={bottomEl}>
+          <CardContainer
+            className="project-slider"
+            ref={sliderEl}
+            {...settings}
+          >
+            {cardItems.map(({ img, title, description }, idx) => (
+              <Card className="card" key={idx}>
+                <ImageContainer>
+                  <CardImage
+                    src={`${process.env.PUBLIC_URL}/assets/project/project-${img}.jpg`}
+                    alt={title}
+                  />
+                  <CardImgOverlay>
+                    <IconContainer to="/">
+                      <Icon icon={faEye} />
+                    </IconContainer>
+                    <IconContainer to="/">
+                      <Icon icon={faLink} />
+                    </IconContainer>
+                  </CardImgOverlay>
+                </ImageContainer>
+                <Info>
+                  <CardLink to="">{title}</CardLink>
+                  <Description>{description}</Description>
+                </Info>
+              </Card>
+            ))}
+          </CardContainer>
+        </Bottom>
       </Wrapper>
     </ContainerXXL>
   );
