@@ -45,7 +45,7 @@ const Quote = () => {
     []
   );
   // ScrollTrigger
-  const containerEl = useRef<HTMLDivElement>(null);
+  const parentWrapperEl = useRef<HTMLDivElement>(null);
   const leftEl = useRef<HTMLDivElement>(null);
   const rightEl = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
@@ -53,16 +53,17 @@ const Quote = () => {
       ...fadeInUp,
       delay: 0.1,
       scrollTrigger: {
-        trigger: containerEl.current,
+        trigger: parentWrapperEl.current,
         start,
       },
     });
+    const isDesktop = window.innerWidth > 992;
     const rightTween = gsap.from(rightEl.current, {
       ...fadeInUp,
       delay: 0.5,
       scrollTrigger: {
-        trigger: containerEl.current,
-        start,
+        trigger: parentWrapperEl.current,
+        start: isDesktop ? start : "top-=70px center",
       },
     });
     return () => {
@@ -70,8 +71,8 @@ const Quote = () => {
     };
   }, []);
   return (
-    <ContainerXXL ref={containerEl}>
-      <ParentWrapper>
+    <ContainerXXL>
+      <ParentWrapper ref={parentWrapperEl}>
         <Wrapper>
           <Col ref={leftEl}>
             <PrimaryParagraph>Get A Quote</PrimaryParagraph>

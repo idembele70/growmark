@@ -29,6 +29,8 @@ import {
 } from "./Projects.style";
 import { gsap } from "gsap";
 import { fadeInUp, start } from "../../shared/gsapAnimations";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { refreshScrollTrigger } from "../../shared/globalFunction";
 
 const Project = () => {
   // Slider settings
@@ -173,7 +175,7 @@ const Project = () => {
           >
             {cardItems.map(({ img, title, description }, idx) => (
               <Card className="card" key={idx}>
-                <ImageContainer>
+                <ImageContainer onLoad={refreshScrollTrigger}>
                   <CardImage
                     src={`${process.env.PUBLIC_URL}/assets/project/project-${img}.jpg`}
                     alt={title}

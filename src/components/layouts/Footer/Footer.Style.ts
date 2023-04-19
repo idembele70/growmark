@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import { MDDown, SMDown, SMUp } from '../../../styles/responsive';
 import { DefaultWrapper } from '../Header/Header.style';
 
+const ParentContainer = styled.div`
+  
+`;
+
 const Container = styled.div`
   width:100%;
   padding: 48px 12px;
@@ -164,6 +168,7 @@ const CopyrightLink = styled(Link)`
   }
 `;
 export {
+  ParentContainer,
   BusinessHoursItem, BusinessHoursItemContainer, Col,
   ColTitle, Container, CopyrightContainer, CopyrightItem,
   CopyrightLink, CopyrightParentWrapper,

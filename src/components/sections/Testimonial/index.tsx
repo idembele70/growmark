@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useLayoutEffect, useMemo, useRef } from "react";
 import { ContainerXXL } from "../Features/Feature.style";
 import {
   ProjectTitle,
@@ -24,6 +24,9 @@ import {
 import { Job } from "../Team/Team.style";
 import { ParagraphWithLargeMargin } from "../Quote/Quote.style";
 import Slider, { Settings } from "react-slick";
+import { refreshScrollTrigger } from "../../shared/globalFunction";
+import { fadeInUp, start } from "../../shared/gsapAnimations";
+import { gsap } from "gsap";
 
 const Testimonial = () => {
   // Card Container settings
@@ -111,11 +114,37 @@ const Testimonial = () => {
     if (direction === "left") sliderEl.current?.slickPrev();
     else sliderEl.current?.slickNext();
   };
+  // scrollTrigger
+  const wrapperEl = useRef<HTMLDivElement>(null);
+  const topEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const wrapperTween = gsap.from(topEl.current, {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: wrapperEl.current,
+        start,
+      },
+    });
+    const testimonialSliderTween = gsap.from(".testimonial-slider", {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: wrapperEl.current,
+        start: "top-=270px center",
+      },
+    });
 
+    return () => {
+      [testimonialSliderTween, wrapperTween].forEach((el) =>
+        el.scrollTrigger?.kill()
+      );
+    };
+  }, []);
   return (
     <ContainerXXL>
-      <Wrapper>
-        <Top>
+      <Wrapper ref={wrapperEl}>
+        <Top ref={topEl}>
           <TopInfoContainer>
             <PrimaryParagraph>Testimonial</PrimaryParagraph>
             <ProjectTitle>What Clients Say About Our Services!</ProjectTitle>
@@ -129,13 +158,18 @@ const Testimonial = () => {
             </SlideBtn>
           </SlideBtnContainer>
         </Top>
-        <TestimonialCardContainer ref={sliderEl} {...settings}>
+        <TestimonialCardContainer
+          className="testimonial-slider"
+          ref={sliderEl}
+          {...settings}
+        >
           {cardItems.map(({ img, description, name, profession }, idx) => (
             <CardItem className="card" key={idx}>
               <CardItemWrapper>
                 <CardImage
                   src={`${process.env.PUBLIC_URL}/assets/testimonial/testimonial-${img}.jpg`}
                   alt={name}
+                  onLoad={refreshScrollTrigger}
                 />
                 <ParagraphWithLargeMargin>
                   {description}

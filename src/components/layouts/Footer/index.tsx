@@ -5,7 +5,7 @@ import {
   faEnvelope,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import {
   BusinessHoursItem,
   BusinessHoursItemContainer,
@@ -27,6 +27,7 @@ import {
   NewsletterParagraph,
   OfficeIcon,
   OfficeParagraph,
+  ParentContainer,
   ParentWrapper,
   QuickLinkIcon,
   QuickLinkItem,
@@ -41,6 +42,8 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { ParagraphWithMediumMargin } from "../../sections/Quote/Quote.style";
+import { gsap } from "gsap";
+import { fadeIn, start } from "../../shared/gsapAnimations";
 
 const Footer = () => {
   // Office Item
@@ -94,8 +97,22 @@ const Footer = () => {
     ],
     []
   );
+  // scrollTrigger
+  const containerEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const tween = gsap.from(containerEl.current, {
+      ...fadeIn,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start: start,
+      },
+    });
+
+    return () => {};
+  }, []);
   return (
-    <>
+    <ParentContainer ref={containerEl}>
       <Container>
         <ParentWrapper>
           <Wrapper>
@@ -164,7 +181,7 @@ const Footer = () => {
           </CopyrightWrapper>
         </CopyrightParentWrapper>
       </CopyrightContainer>
-    </>
+    </ParentContainer>
   );
 };
 

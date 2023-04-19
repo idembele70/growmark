@@ -57,13 +57,14 @@ const Team = () => {
       },
     });
     const cardItemTween: GSAPTween[] = [];
+    const isDesktop = window.innerWidth > 992;
     cardItemEls.current.forEach((el, idx) => {
       const tween = gsap.from(el, {
         ...fadeInUp,
-        delay: 0.2 * idx,
+        delay: 0.2 * (isDesktop ? idx : 1),
         scrollTrigger: {
-          trigger: cardContainerEl.current,
-          start,
+          trigger: isDesktop ? cardContainerEl.current : el,
+          start: isDesktop ? start : "top-=870px center",
         },
       });
       cardItemTween.push(tween);
