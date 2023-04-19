@@ -72,32 +72,22 @@ const Features = () => {
       itemContainerEl.current.push(el);
   };
   useLayoutEffect(() => {
-    let MDUPTween: GSAPTween;
-    const MDDownTween: GSAPTween[] = [];
-    if (window.innerWidth > 992) {
-      MDUPTween = gsap.from(itemContainerEl.current, {
+    const itemWrappertween: GSAPTween[] = [];
+    const isDesktop = window.innerWidth > 992;
+    itemContainerEl.current.forEach((element, idx) => {
+      const tween = gsap.from(element, {
         ...fadeIn,
-        stagger,
+        delay: 0.2 * (isDesktop ? idx : 1),
         scrollTrigger: {
-          trigger: itemWrapperEl.current,
+          trigger: isDesktop ? itemWrapperEl.current : element,
           start,
         },
       });
-    } else
-      itemContainerEl.current.forEach((element) => {
-        const tween = gsap.from(element, {
-          ...fadeIn,
-          delay: 0.2,
-          scrollTrigger: {
-            trigger: element,
-            start,
-          },
-        });
-        MDDownTween.push(tween);
-      });
+      itemWrappertween.push(tween);
+    });
     // kill scroll trigger on unmount
     return () => {
-      [MDUPTween, ...MDDownTween].forEach((element) => {
+      itemWrappertween.forEach((element) => {
         element.scrollTrigger?.kill();
       });
     };

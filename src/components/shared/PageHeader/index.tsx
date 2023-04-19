@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import {
   Container,
   List,
@@ -7,15 +7,25 @@ import {
   Title,
   Wrapper,
 } from "./PageHeader.style";
+import { gsap } from "gsap";
+import { fadeIn } from "../gsapAnimations";
 
 type PageHeaderProps = {
   title: string;
   listItemTitle: string;
 };
 const PageHeader: React.FC<PageHeaderProps> = ({ title, listItemTitle }) => {
-  const listItem: string[] = ["Home", "Pages", listItemTitle];
+  // animations on load
+  const containerEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    gsap.from(containerEl.current, {
+      ...fadeIn,
+      delay: 0.1,
+    });
+    return () => {};
+  }, []);
   return (
-    <Container>
+    <Container ref={containerEl}>
       <Wrapper>
         <Title>{title}</Title>
         <List>

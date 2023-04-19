@@ -23,12 +23,14 @@ import {
   Iframe,
   FormCol,
 } from "./Contact.style";
-import { useMemo } from "react";
+import { useLayoutEffect, useMemo, useRef } from "react";
 import {
   faEnvelope,
   faLocationDot,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import { gsap } from "gsap";
+import { fadeInUp, start } from "../../shared/gsapAnimations";
 
 const Contact = () => {
   interface IDetailsItem {
@@ -56,15 +58,54 @@ const Contact = () => {
     ],
     []
   );
+  // scrollTrigger
+  const containerEl = useRef<HTMLElement>(null);
+  const topEl = useRef<HTMLDivElement>(null);
+  const leftEl = useRef<HTMLDivElement>(null);
+  const rightEl = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const topTween = gsap.from(topEl.current, {
+      ...fadeInUp,
+      delay: 0.1,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start,
+      },
+    });
+    const leftTween = gsap.from(leftEl.current, {
+      ...fadeInUp,
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start,
+      },
+    });
+    const isDesktop = window.innerWidth > 992;
+    const rightTween = gsap.from(rightEl.current, {
+      ...fadeInUp,
+      delay: 0.5,
+      scrollTrigger: {
+        trigger: containerEl.current,
+        start: isDesktop ? start : "top+=600px 100%",
+        markers: true,
+      },
+    });
+
+    return () => {
+      [topTween, leftTween, rightTween].forEach((el) =>
+        el.scrollTrigger?.kill()
+      );
+    };
+  }, []);
   return (
-    <Container>
+    <Container ref={containerEl}>
       <Wrapper>
-        <Top>
+        <Top ref={topEl}>
           <PrimaryParagraph>Contact Us</PrimaryParagraph>
           <Title>If You Have Any Query, Please Contact Us</Title>
         </Top>
         <Bottom>
-          <Col>
+          <Col ref={leftEl}>
             <ColTitle>Need a functional contact form?</ColTitle>
             <Paragraph>
               The contact form is currently inactive. Get a functional and
@@ -90,7 +131,7 @@ const Contact = () => {
               </BtnContainer>
             </Form>
           </Col>
-          <Col>
+          <Col ref={rightEl}>
             <ColTitle>Contact Details</ColTitle>
             {DetailsItems.map(({ icon, title, paragraph }) => (
               <DetailsRow>

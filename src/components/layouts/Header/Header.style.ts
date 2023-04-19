@@ -156,7 +156,9 @@ const NavItemContainer = styled.div<NavItemContainerProps>`
   overflow: "hidden",
   flexBasis: "100%",
   transition: "max-height 350ms ease",
-  marginTop: 15
+  ["& > div"]: {
+    marginTop: 15
+  }
 })
   }
 `;
