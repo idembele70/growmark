@@ -60,10 +60,19 @@ const About = () => {
   // Modal handler
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalContainerEl = useRef<HTMLDivElement>(null);
+  const closeContainerEl = useRef<HTMLButtonElement>(null);
+  const closeEl = useRef<HTMLOrSVGElement>(null);
   const handleToggleModal = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
   ) => {
-    if (e.target === modalContainerEl.current || !isModalOpen) {
+    if (
+      modalContainerEl.current === e.target ||
+      closeContainerEl.current === e.target ||
+      (closeContainerEl.current?.firstElementChild as Element).contains(
+        e.target as Element
+      ) ||
+      !isModalOpen
+    ) {
       setIsModalOpen(!isModalOpen);
       // body style
       if (!isModalOpen) document.body.style.overflow = "hidden";
@@ -133,7 +142,7 @@ const About = () => {
         <Modal>
           <ModalHeader>
             <ModalTitle>Youtube Video</ModalTitle>
-            <CloseContainer onClick={handleToggleModal}>
+            <CloseContainer ref={closeContainerEl} onClick={handleToggleModal}>
               <Close icon={faClose} />
             </CloseContainer>
           </ModalHeader>
