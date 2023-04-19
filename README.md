@@ -49,12 +49,12 @@ This project consists of practicing designing a website template using React and
 
 ## Roadmap
 
-- [ ] Responsive
-  - [ ] Desktop
-  - [ ] Tablet
-  - [ ] Mobile
-- [ ] Animation
-  - [ ] Scroll Trigger
-  - [ ] Loader
+- [x] Responsive
+  - [x] Desktop
+  - [x] Tablet
+  - [x] Mobile
+- [x] Animation
+  - [x] Scroll Trigger
+  - [x] Loader
 - [ ] Deploy
-- [ ] README
+- [x] README

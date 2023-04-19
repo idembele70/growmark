@@ -86,8 +86,7 @@ const Contact = () => {
       delay: 0.5,
       scrollTrigger: {
         trigger: containerEl.current,
-        start: isDesktop ? start : "top+=600px 100%",
-        markers: true,
+        start: isDesktop ? start : "top+=600px center",
       },
     });
 
@@ -133,8 +132,8 @@ const Contact = () => {
           </Col>
           <Col ref={rightEl}>
             <ColTitle>Contact Details</ColTitle>
-            {DetailsItems.map(({ icon, title, paragraph }) => (
-              <DetailsRow>
+            {DetailsItems.map(({ icon, title, paragraph }, idx) => (
+              <DetailsRow key={idx}>
                 <IconContainer>
                   <Icon icon={icon} />
                 </IconContainer>

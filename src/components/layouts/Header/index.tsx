@@ -90,7 +90,15 @@ const Header = () => {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpand = () => {
+    const { style } = document.body;
     setExpanded(!expanded);
+    if (expanded) {
+      style.height = "auto";
+      style.overflow = "auto";
+    } else {
+      style.height = "100vh";
+      style.overflow = "hidden";
+    }
     if (expandDropDown) setExpandDropDown(false);
   };
   // expand dropDown on MDDown devices
