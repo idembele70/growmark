@@ -128,6 +128,16 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  useEffect(() => {
+    return () => {
+      //
+      const { style } = document.body;
+      if (expanded) {
+        style.height = "auto";
+        style.overflow = "auto";
+      }
+    };
+  }, [pathname]);
   // Scroll to Top
   const handleScrollToTop = () => {
     setTimeout(() => {

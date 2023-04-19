@@ -61,7 +61,6 @@ const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalContainerEl = useRef<HTMLDivElement>(null);
   const closeContainerEl = useRef<HTMLButtonElement>(null);
-  const closeEl = useRef<HTMLOrSVGElement>(null);
   const handleToggleModal = (
     e: React.MouseEvent<HTMLDivElement | HTMLButtonElement, MouseEvent>
   ) => {
