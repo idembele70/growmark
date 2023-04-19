@@ -56,5 +56,5 @@ This project consists of practicing designing a website template using React and
 - [x] Animation
   - [x] Scroll Trigger
   - [x] Loader
-- [ ] Deploy
+- [x] Deploy
 - [x] README
